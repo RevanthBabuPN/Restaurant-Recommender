@@ -1,12 +1,14 @@
 from flask import Flask, request, jsonify, Response
 from flask_restful import Resource, Api
 from flask_restful import reqparse
+from flask_cors import CORS, cross_origin
 
 import json
 import recommend
 
 app = Flask(__name__)
 api = Api(app)
+cors = CORS(app)
 
 parser = reqparse.RequestParser()
 parser.add_argument('cuisine_list', type=str, location='json')
@@ -15,13 +17,13 @@ parser.add_argument('cuisine_list', type=str, location='json')
 class CuisineList(Resource):
     def get(self):
         cuisines = recommend.get_cuisines()
-        return Response(json.dumps(cuisines), status=200, mimetype="application/json")
+        return Response(cuisines, status=200, mimetype="application/json")
 
 
 class RestaurantList(Resource):
     def get(self):
         restaurants = recommend.get_restaurants()
-        return Response(json.dumps(restaurants), status=200, mimetype="application/json")
+        return Response(restaurants, status=200, mimetype="application/json")
 
 
 class Recommendation1(Resource):
