@@ -15,11 +15,15 @@ with open('model\\1\\restaurant_cuisines.pkl', 'rb') as f:
 	restaurant_cuisines = pickle.load(f)
 
 def get_cuisines():
-	return list(restaurant_cuisines.columns)[0]
+	res = []
+	for i in sorted(list(restaurant_cuisines.columns)):
+		res.append({"name":i, "value":i})
+	return json.dumps(res)
 
 def get_restaurants():
-	df_n = df.loc[:,['unique_id']]
-	return df_n.to_records().tolist()
+	df_n = df.loc[:,['unique_id','location']]
+	df_n.reset_index(inplace=True)
+	return df_n.to_json(orient='records', index=True)#df_n.to_records().tolist()
 
 def recommend_similar(name, similarity_matrix=similarity, df=df, location=''):
 	# List to put top 10 restaurants
@@ -111,7 +115,7 @@ def recommend_cuisine(user_cuisines, restaurant_cuisines=restaurant_cuisines, df
 
 
 if __name__ == "__main__":
-	# print(get_restaurants())
-	recommendation = recommend_similar('Mast Kalandar')
+	print(get_restaurants())
+	# recommendation = recommend_similar('Mast Kalandar')
 	# recommendation = recommend_cuisine(['North Indian'])
 	# print(recommendation)
