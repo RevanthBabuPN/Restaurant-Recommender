@@ -90,7 +90,7 @@ def sim_with_all(user_cuisines, cuisine_list, restaurant_cuisines):
 
 
 def recommend_cuisine(user_cuisines, restaurant_cuisines=restaurant_cuisines, df=df, location=''):
-	cuisines = get_cuisines()
+	cuisines = list(restaurant_cuisines.columns)
 	sim_list = sim_with_all(user_cuisines, cuisines, restaurant_cuisines)
 
 	recommendation = []
@@ -115,7 +115,7 @@ def recommend_cuisine(user_cuisines, restaurant_cuisines=restaurant_cuisines, df
 
 
 if __name__ == "__main__":
-	print(get_restaurants())
-	# recommendation = recommend_similar('Mast Kalandar')
+	# print(get_restaurants())
+	recommendation = recommend_similar('Mast Kalandar')
 	# recommendation = recommend_cuisine(['North Indian'])
-	# print(recommendation)
+	print(recommendation)

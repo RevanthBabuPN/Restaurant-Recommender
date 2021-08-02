@@ -7,8 +7,8 @@ import json
 import recommend
 
 app = Flask(__name__)
-api = Api(app)
 cors = CORS(app)
+api = Api(app)
 
 parser = reqparse.RequestParser()
 parser.add_argument('cuisine_list', type=str, location='json')
@@ -33,8 +33,10 @@ class Recommendation1(Resource):
 
 
 class Recommendation2(Resource):
-    def get(self):
+    # @cross_origin(methods = ["GET, POST, OPTIONS"], headers = ["Content-Type: application/json"])
+    def post(self):
         user_cuisines = request.get_json()
+        # print(user_cuisines)
         # user_cuisines = parser.parse_args()
         result = recommend.recommend_cuisine(user_cuisines)
         return Response(result, status=200, mimetype="application/json")
