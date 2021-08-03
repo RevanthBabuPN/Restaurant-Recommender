@@ -17,17 +17,17 @@ $(document).ready(function () {
 						title: 'name',
 						description: 'location'
 					},
-					onSelect: function (result, response) {
-						console.log(result)
-						var restaurant_name = result.name;
-						searchbox = document.querySelector("#searchbox");
-						searchbox.removeAttribute("value");
-						searchbox.setAttribute("value", restaurant_name);
-						console.log(searchbox);
-						console.log(searchbox.value);
-						// form1.submit();
-						return true;
-					}
+					// onSelect: function (result, response) {
+					// 	console.log(result)
+					// 	var restaurant_name = result.name;
+					// 	searchbox = document.querySelector("#searchbox");
+					// 	searchbox.removeAttribute("value");
+					// 	searchbox.setAttribute("value", restaurant_name);
+					// 	console.log(searchbox);
+					// 	console.log(searchbox.value);
+					// 	// form1.submit();
+					// 	return true;
+					// }
 				});
 		});
 
@@ -62,11 +62,13 @@ form2.addEventListener("submit", e => {
 		},
 		body: JSON.stringify(cuisines)
 	}
+	if (cuisines.length > 0) {
+		form2.submit();
+	}
 	fetch('http://127.0.0.1:5000/api/resrecommender/2', options)
 		.then(response => response.json()
 		.then(data => {
 			console.log(data)
-			form2.submit();
 		}
 		))
 });
