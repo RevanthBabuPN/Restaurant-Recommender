@@ -22,12 +22,12 @@
 		{{ header(title) }}
 		<div class="option option-1">
 			<h2>find a restaurant similar to..</h2>
-			<form id="form-1" action="{{url_for('recommendation')}}" method="POST"> 
+			<form id="form-1" action="{{url_for('recommendation')}}#popup1" method="POST"> 
 				<!-- action="{{url_for('recommendation')}}" method="POST"> -->
 				<!-- <input type="text" id="searchBox" placeholder="Enter a restaurant name..." /> -->
 				<div class="ui fluid search">
 					<div class="ui icon input fluid">
-						<input class="prompt" id="searchbox" placeholder="Enter a restaurant name" type="text" name="name">
+						<input class="prompt" id="searchbox" placeholder="Enter a restaurant name" type="text" name="name" required	>
 						<i class="search icon"></i>
 					</div>
 					<button class="ui button" type="submit">GO</button>
@@ -45,7 +45,7 @@
 
 		<div class="option option-2">
 			<h2>select cuisines of your choice..</h2>
-			<form id="form-2" action="{{url_for('recommendation')}}" method="POST">
+			<form id="form-2" action="{{url_for('recommendation')}}#popup1" method="POST">
 				<div class="box">
 					<div class="ui multiple fluid search normal selection dropdown">
 						<div class="text"></div>
@@ -58,38 +58,43 @@
 		</div>
 		
 		{% if recommendations %}
-		<div class="card-container">
-			{% for restaurant in recommendations %}
-			<div class="card">
-				<a href="{{restaurant.url}}" style="text-decoration: none;">
-					<header class="article-header">
-						<h2 class="article-title">
-							{{ restaurant.name }}
-						</h2>
-						<div>
-							<div class="category-title">
-								<!-- Article -->
-								<span class="date">{{ restaurant.location }}</span>
+		<div id="popup1" class="overlay">
+			<div class="popup">
+				<a class="close" href="#">&times;</a>
+				<div class="content">
+					<div class="card-container">
+						{% for restaurant in recommendations %}
+						<div class="card">
+							<header class="article-header">
+								<h2 class="article-title">
+									{{ restaurant.name }}
+								</h2>
+								<div>
+									<div class="category-title">
+										<!-- Article -->
+										<span class="date">{{ restaurant.location }}</span>
+									</div>
+								</div>
+							</header>
+							<div class="author">
+								<div class="profile"></div>
+								<div class="info">
+									<div class="caption">Author</div>
+									<div class="name">David Hose</div>
+								</div>
 							</div>
-						</div>
-					</header>
-					<div class="author">
-						<div class="profile"></div>
-						<div class="info">
-							<div class="caption">Author</div>
-							<div class="name">David Hose</div>
-						</div>
+							<div class="tags">
+								<div>{{ restaurant['Mean Rating'] }}</div>
+								<div>Cost for 2: Rs {{ restaurant.cost }}</div>
+							</div>
+							<a href="{{restaurant.url}}" class="no-underline"><span></span></a>
+						</div>	
+						{% endfor %}
 					</div>
-					<div class="tags">
-						<div>{{ restaurant['Mean Rating'] }}</div>
-						<div>Cost for 2: Rs {{ restaurant.cost }}</div>
-					</div>
-				</a>
-			</div>	
-			{% endfor %}
+				</div>
+			</div>
 		</div>
 		{% endif %}
-
 	</div>
 	{{ footer() }}
 </body>
