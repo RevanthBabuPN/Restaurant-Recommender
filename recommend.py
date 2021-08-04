@@ -66,6 +66,7 @@ def recommend_similar(name, similarity_matrix=similarity, df=df, location=''):
 		by='Mean Rating', ascending=False).head(10)
 	recommendation_df.reset_index(drop=True, inplace=True)
 
+	recommendation_df['dish_liked'] = recommendation_df['dish_liked'].apply(lambda x : x.split(','))
 	return recommendation_df.to_json(orient='index')
 
 # def recommend_cuisine(cuisine_list):
@@ -111,6 +112,7 @@ def recommend_cuisine(user_cuisines, restaurant_cuisines=restaurant_cuisines, df
 		by='Mean Rating', ascending=False).head(10)
 	recommendation_df.reset_index(drop=True, inplace=True)
 
+	recommendation_df['dish_liked'] = recommendation_df['dish_liked'].apply(lambda x : x.split(','))
 	return recommendation_df.to_json(orient='index')
 
 
