@@ -142,6 +142,10 @@ button {
 	z-index: 1;
 }
 
+.card .author {
+	margin-bottom: auto;
+}
+
 .date {
 	/* color: #8a8a8a; */
 	color: #757575;
@@ -150,13 +154,14 @@ button {
 .tags {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 1rem 0 1rem;
+	/* margin: 1rem 0 1rem; */
 }
 
 .tags div {
+	margin: 2px 5px 0px 2px;
 	font-size: 10px;
 	font-weight: 600;
-	padding: 1px 8px;
+	padding: 0px 5px;
 	margin-right: 5px;
 	/* border: 3px solid #28242f; */
 	border: 3px solid #d7dbd0;
@@ -167,17 +172,38 @@ button {
 	font-size: 14px;
 	/* color: #fff; */
 	color: #000;
-	margin-bottom: 1rem;
+	/* margin-bottom: 1rem; */
+	margin-bottom: 0;
 }
 
 .card .article-title {
-	font-size: 20px;
+	margin-bottom: 5px;
+	font-size: 25px;
 	font-weight: 700;
+
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .card .article-header {
 	margin-top: 0;
+	/* margin-bottom: auto; */
+	margin-bottom: 10px;
+}
+
+.card .info {
 	margin-bottom: auto;
+}
+
+.card .info .sub-category{
+	color: #757575;
+}
+
+.card .info .popular-dish{
+	font-size: 12px;
 }
 
 /* .card .author { */

@@ -78,16 +78,19 @@
 									</div>
 								</div>
 							</header>
-							<div class="author">
-								<div class="profile"></div>
-								<div class="info">
-									<div class="caption">Author</div>
-									<div class="name">David Hose</div>
+							<div class="info">
+								<span class="sub-category">Popular Dishes</span>
+								<div class="popular-dish">
+									<span>{{ ",".join(restaurant.dish_liked[:5]) }}</span>
 								</div>
 							</div>
 							<div class="tags">
-								<div>{{ restaurant['Mean Rating'] }}</div>
+								<div>
+									<span>{{ restaurant['Mean Rating'] }}</span>
+									<span><img src="../static/img/star.png" alt="" width="8px" height="8px"></span>
+								</div>
 								<div>Cost for 2: Rs {{ restaurant.cost }}</div>
+								<div>{{ restaurant.rest_type }}</div>
 							</div>
 							<a href="{{restaurant.url}}" class="no-underline"><span></span></a>
 						</div>	
