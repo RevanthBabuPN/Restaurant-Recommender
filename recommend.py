@@ -6,12 +6,12 @@ from sklearn.metrics.pairwise import linear_kernel
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-df = pd.read_pickle('model\\1\\df.pkl')
+df = pd.read_pickle('model/1/df.pkl')
 
-with open('model\\1\\cosine_similarities.pkl', 'rb') as f:
+with open('model/1/cosine_similarities.pkl', 'rb') as f:
 	similarity = pickle.load(f)
 
-with open('model\\1\\restaurant_cuisines.pkl', 'rb') as f:
+with open('model/1/restaurant_cuisines.pkl', 'rb') as f:
 	restaurant_cuisines = pickle.load(f)
 
 def get_cuisines():
